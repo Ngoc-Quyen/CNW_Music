@@ -3,15 +3,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Đăng nhập</title>
+<title>Đăng ký</title>
 </head>
 <body>
 	<form action="../../../AuthController" name="form" method="post">
-		Username: <input type="text" name="username"/>
+    	Username: <input type="text" name="username"/>
 		Password: <input type="password" name="password" />
-		<input type="hidden" name="action" value="login" />
-		<input type="submit" value="Login" />
-		<input type="reset" value="Reset" />
+    	<input type="hidden" name="action" value="register" />
+    	<input type="submit" value="Login" />
 	</form>
+	
 </body>
 </html>
