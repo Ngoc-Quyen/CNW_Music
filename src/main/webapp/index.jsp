@@ -1,12 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Index Page</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
-	Hello
+    <button id="loadPlaylistButton"><a href="./view/pages/playlist/PlaylistList.jsp">Load Playlist</a></button>
+    <div id="playlistContainer"></div>
+
 </body>
 </html>

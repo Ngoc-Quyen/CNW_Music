@@ -6,6 +6,13 @@ public class Account {
 	String username;
 	String password;
 	
+	public Account(Integer id, Integer role_id, String username, String password) {
+		this.id = id;
+		this.role_id = role_id;
+		this.username = username;
+		this.password = password;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
