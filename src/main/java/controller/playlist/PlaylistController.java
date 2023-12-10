@@ -34,6 +34,35 @@ public class PlaylistController extends HttpServlet {
         // Write the JSON data to the response
         resp.getWriter().write(json);
     }
+    
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	String actionType = req.getParameter("action");
+    	
+        if ("create".equals(actionType)) {
+        	HttpSession session = req.getSession();
+        	Integer userId = (Integer) session.getAttribute("userId");
+        	
+        	int playlistId = PlaylistBO.CreatePlaylist(userId);
+        	// Convert the playlist to JSON
+        	String json = new Gson().toJson(playlistId);
+        	
+        	// Set the content type to application/json
+        	resp.setContentType("application/json");
+        	resp.setCharacterEncoding("UTF-8");
+        	
+        	// Write the JSON data to the response
+        	resp.getWriter().write(json);        
+        }
+        else if("change-name".equals(actionType)) {
+        	HttpSession session = req.getSession();
+        	Integer userId = (Integer) session.getAttribute("userId");
+        	Integer playlistId = Integer.parseInt(req.getParameter("playlistId"));
+        	String newName = req.getParameter("newName");
+        	System.out.print("userid=" + userId + "playlistid=" + playlistId);
+        	PlaylistBO.ChangeName(userId, playlistId, newName);
+        }
+    }    
 }
 
 

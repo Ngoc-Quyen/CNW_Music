@@ -9,4 +9,12 @@ public class PlaylistBO {
 	public static ArrayList<Playlist> GetPlayList(int id) {
 		return PlaylistDAO.GetPlaylistDAO(id);
 	}
+	
+	public static int CreatePlaylist(int userId) {
+		return PlaylistDAO.CreatePlaylistDAO(userId);
+	}
+	
+	public static void ChangeName(int userId, int playlistId, String newName) {
+		PlaylistDAO.ChangePlaylistName(userId, playlistId, newName);
+	}
 }

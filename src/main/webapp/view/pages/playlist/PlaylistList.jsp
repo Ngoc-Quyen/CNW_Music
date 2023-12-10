@@ -9,6 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/static/css/global.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/static/css/playlist_item.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/static/css/layout.css">
     
     <!-- Define the redirectToPage function outside of $(document).ready -->
     <script>
@@ -18,30 +19,15 @@
         }
     </script>
     <style>
-    	body{
-	    	background-color: black;
-			display: flex;   
-			gap: 20px; 	
-			padding: 20px;
-			margin: 0;
-			min-height: 95vh;
-    	}
-    	.content{
-    		background-color: #141414;
-    		border-radius: 20px;
-    		padding: 20px;
-    		width: 100%;
-    		min-height: 80%;
-    	}
-    	.title{
-    		font-weight: 600;
-    		font-size: 20px;
+    	.playlist-container{
+    		display: flex;
+    		gap: 20px;
     	}
     </style>
 </head>
 <body>
 	<jsp:include page="../../components/TabLeft.jsp" />
-	<div class="content">
+	<div class="content" style="margin: 10px 10px 0px 0px;">
 		<jsp:include page="../../components/Header.jsp" />
 	    <p class="title">Dành cho bạn</p>
 	    <div class="playlist-container">
@@ -66,7 +52,7 @@
                     var playlistItem = data[i];
 
                     // Concatenate HTML content for each playlist item
-                    htmlString += '<div class="container" onclick="redirectToPage(\'' + playlistItem.id + '\')">';
+					htmlString += '<div class="container" onclick="redirectToPage(\'' + playlistItem.id + '\')">';
                     htmlString += '<img src="${pageContext.request.contextPath}/static/img/DefaultPlaylist.jpg" class="thumbnail"/>';
                     htmlString += '<p class="name">' + playlistItem.name + '</p>';
                     htmlString += '</div>';

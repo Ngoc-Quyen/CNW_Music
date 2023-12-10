@@ -9,19 +9,64 @@
 		.tab-left{
 			display: flex;
 			flex-direction: column;
-			gap: 10px;
 			min-width: 300px;
 		}
 		.tab-container{
 			background-color: #141414;
 			padding: 10px 20px 10px 20px;
 			border-radius: 20px;
+			margin: 10px 0px 0px 10px;
+		}
+		.tab-item-container{
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+		.tab-playlist-container{
+			height: calc(100% - 300px);
+		}
+		.tab-item-container img{
+			width: 20px;
+			height: 20px;
 		}
 		.playlist-row-container{
 			display: flex;
 			flex-direction: column;
 			gap: 10px;
+			overflow: auto;
+			height: calc(100% - 50px);
+			scrollbar-width: thin;
 		}
+		
+		.playlist-row-container::-webkit-scrollbar-thumb {
+		  background-color: #4CAF50; /* Set the color of the scrollbar thumb */
+		  border-radius: 6px; /* Set the radius of the scrollbar thumb */
+		}
+		
+		.playlist-row-container::-webkit-scrollbar-track {
+		  background-color: #f1f1f1; /* Set the color of the scrollbar track */
+		}
+		
+		/* Optional: Handle on hover */
+		.playlist-row-container::-webkit-scrollbar-thumb:hover {
+		  background-color: #45a049; /* Change color on hover */
+		}
+		
+		/* Style for Firefox */
+		.playlist-row-container::-moz-scrollbar-thumb {
+		  background-color: #4CAF50; /* Set the color of the scrollbar thumb */
+		  border-radius: 6px; /* Set the radius of the scrollbar thumb */
+		}
+		
+		.playlist-row-container::-moz-scrollbar-track {
+		  background-color: #f1f1f1; /* Set the color of the scrollbar track */
+		}
+		
+		/* Optional: Handle on hover */
+		.playlist-row-container::-moz-scrollbar-thumb:hover {
+		  background-color: #45a049; /* Change color on hover */
+		}
+
 		.playlist-header{
 			display: flex;
 			justify-content: space-between;
@@ -49,13 +94,15 @@
 			align-items: flex-start;
 			padding: 5px;
 		}
-		.name{
+		.playlist-name{
+			font-weight: 700;
 			font-size: 12px;
 			margin: 0;
 		}
 		.number{
 			font-size: 12px;
 			margin: 0;
+			font-weight: 400;
 		}
 		.tab-item{
 			font-weight: 600;
@@ -72,18 +119,45 @@
             // Use playlistItemId to pass data to the new page, e.g., in the URL or through a form
             window.location.href = '<%=request.getContextPath()%>/view/pages/music/MusicList.jsp?playlistItemId=' + playlistItemId;
         }
+        function createPlaylist() {
+            $.ajax({
+                url: '<%= request.getContextPath() %>/PlaylistController',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    action: "create"  // Add this line to include the actionType parameter
+                },
+                success: function(data) {
+                    console.log(data);
+                    window.location.href = '<%=request.getContextPath()%>/view/pages/music/MusicList.jsp?playlistItemId=' + data;
+                },
+                error: function() {
+                    console.error('Error calling PlaylistController');
+                }
+            });
+        }
+
     </script>
 </head>
 <body>
 	<div class="tab-left">
 		<div class="tab-container">
-			<p class="tab-item">Trang chủ</p>
-			<p class="tab-item">Tìm kiếm</p>
+			<div class="tab-item-container">
+				<img src="<%=request.getContextPath()%>/static/icon/home.svg">
+				<p class="tab-item">Trang chủ</p>
+			</div>
+			<div class="tab-item-container">
+				<img src="<%=request.getContextPath()%>/static/icon/search.svg">
+				<p class="tab-item">Tìm kiếm</p>
+			</div>
 		</div>
-		<div class="tab-container">
+		<div class="tab-container tab-playlist-container">
 			<div class="playlist-header">
-				<p class="tab-item">Thư viện</p>
-				<p class="tab-item">+</p>
+				<div class="tab-item-container">
+					<img src="<%=request.getContextPath()%>/static/icon/library.svg">
+					<p class="tab-item">Thư viện</p>
+				</div>
+                <p class="tab-item" onclick="createPlaylist()">+</p>
 			</div>
 			<div class="playlist-row-container">
 				
@@ -112,7 +186,7 @@
                     htmlString += '<div class="playlist" onclick="redirectToPage(\'' + playlistItem.id + '\')">';
                     htmlString += '<img src="${pageContext.request.contextPath}/static/img/DefaultPlaylist.jpg" class="playlist-thumbnail"/>';
                     htmlString += '<div class="playlist-info">'
-                    htmlString += '<p class="name">' + playlistItem.name + '</p>';
+                    htmlString += '<p class="playlist-name">' + playlistItem.name + '</p>';
                     htmlString += '<p class="number">1 bài hát</p>';
                     htmlString += '</div>';
                     htmlString += '</div>';

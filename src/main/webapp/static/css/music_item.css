@@ -4,17 +4,19 @@ music-container{
 }
 
 .container{
-	background-color: rgb(128, 128, 128);
 	padding-left: 10px;
 	padding-right: 10px;
 	width: auto;
 	height: 50px;
-	border-radius: 20px;
+	border-radius: 10px;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	gap: 30px;
 	cursor: pointer;
+}
+
+.container:hover{
+	background-color: #494949;
 }
 
 p{
@@ -29,31 +31,39 @@ p{
 }
 
 .thumbnail{
-	width: 30px;
-	height: 30px;
-	border-radius: 20px;
+	width: 45px;
+	height: 45px;
+	border-radius: 10px;
 }
 
-.name{
+.music-name{
 	margin: 0;
 	padding: 0;
+	font-size: 12px;
+	font-weight: 500;
 }
 
 .artist-name{
 	margin: 0;
 	padding: 0;
+	font-size: 12px;
+	font-weight: 500;
 }
 
 .info{
-	width: 35%;
+	width: 25%;
 	display: flex;
+	height: 100%;
+	padding: 10px;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	justify-content: space-around;
+	align-items: flex-start;
 }
 
 .genre{
 	width: 35%;
 	display: flex;
 	justify-content: center;
+	font-size: 12px;
+	font-weight: 500;
 }
