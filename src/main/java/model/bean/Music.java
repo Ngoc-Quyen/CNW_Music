@@ -10,6 +10,17 @@ public class Music {
 	String name;
 	String music_file;
 	Date release_date;
+	
+	public Music(Integer id, Integer account_id, Integer genre_id, String artist_name, String name, String music_file, Date release_date) {
+		this.id = id;
+		this.account_id = account_id;
+		this.genre_id = genre_id;
+		this.artist_name = artist_name;
+		this.name = name;
+		this.music_file = music_file;
+		this.release_date = release_date;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
