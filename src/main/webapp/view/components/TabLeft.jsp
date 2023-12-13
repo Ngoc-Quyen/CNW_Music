@@ -142,11 +142,11 @@
 <body>
 	<div class="tab-left">
 		<div class="tab-container">
-			<div class="tab-item-container">
+			<div class="tab-item-container" onclick="redirectToHomePage()">
 				<img src="<%=request.getContextPath()%>/static/icon/home.svg">
 				<p class="tab-item">Trang chủ</p>
 			</div>
-			<div class="tab-item-container">
+			<div class="tab-item-container" onclick="redirectToSearchPage()">
 				<img src="<%=request.getContextPath()%>/static/icon/search.svg">
 				<p class="tab-item">Tìm kiếm</p>
 			</div>
@@ -165,6 +165,14 @@
 		</div>	
 	</div>
 	<script>
+    function redirectToHomePage() {
+        // Redirect to the home page or perform any other action
+        window.location.href = '<%=request.getContextPath()%>/view/pages/playlist/PlaylistList.jsp';
+    }
+    function redirectToSearchPage() {
+        // Redirect to the home page or perform any other action
+        window.location.href = '<%=request.getContextPath()%>/view/pages/search/Search.jsp';
+    }
     $(document).ready(function() {
         // Use AJAX to call the PlaylistController servlet when the page loads
         $.ajax({

@@ -105,8 +105,8 @@
 			<img class="playlist-image" src="<%=request.getContextPath()%>/static/img/DefaultPlaylist.jpg">
 			<div class="playlist-information">
 				<p style="font-size: 10px; font-weight: 400;">Playlist</p>
-				<p style="font-size: 40px; font-weight: 600;">Playlist name for symbol</p>
-				<p style="font-weight: 500;">50 bai hat</p>			
+				<p style="font-size: 40px; font-weight: 600;"  class="playlist-information-name"></p>
+				<p style="font-weight: 500;" class="playlist-information-number"></p>			
 			</div>
 			<div id="editBtn" style="display: flex; gap: 10px; align-items: center; position: absolute; bottom: -10px; right: 0; cursor: pointer">
 				<img style="width: 12px; height: 12px;" src="<%=request.getContextPath()%>/static/icon/write.svg">
@@ -138,6 +138,14 @@
         // Update the playlistName variable when the input field changes
         $(".edit-playlist-content-child input").on('input', function() {
             playlistName = $(this).val();
+        });
+        
+        $(document).on('click', '.music-name', function() {
+            // Get the music ID or any relevant information from the clicked element
+            var musicId = $(this).data('id');
+
+            // Redirect to the MusicDetail page with the music ID
+            window.location.href = '<%=request.getContextPath()%>/view/pages/music/MusicDetail.jsp?musicItemId=' + musicId;
         });
         
         // Use AJAX to call the MusicController servlet when the page loads
@@ -176,14 +184,17 @@
         $.ajax({
             url: '../../../MusicController',
             type: 'GET',
-            data: { playlistItemId:  playlistItemId}, // Pass the playlistItem information
+            data: { playlistItemId:  playlistItemId,
+            		action: 'getAllMusicByPlaylistId'	
+            }, // Pass the playlistItem information
             dataType: 'json',
             success: function(data) {
                 console.log(data);
 
                 // Create a string to hold the HTML content
                 var htmlString = '';
-
+				$('.playlist-information-name').text(data[0].playlist_name);
+				$('.playlist-information-number').text(data.length);
                 // Assuming data is an array of playlist items
                 // Modify this part based on your JSON structure
                 for (var i = 0; i < data.length; i++) {
@@ -195,8 +206,8 @@
                     htmlString += '<p class="id">' + 1 + '</p>';
                     htmlString += '<img src="${pageContext.request.contextPath}/static/img/DefaultPlaylist.jpg" class="thumbnail"/>';
                     htmlString += '<div class="info">';
-                    htmlString += '<p class="music-name">Name for default</p>';
-                    htmlString += '<p class="artist-name">Artist</p>';
+                    htmlString += '<p class="music-name" data-id="' + playlistItem.id + '">'+ playlistItem.name +'</p>';
+                    htmlString += '<p class="artist-name">' + playlistItem.artist_name + '</p>';
                     htmlString += '</div>';
                     htmlString += '<p class="genre">Genre</p>';
                     htmlString += '</div>';

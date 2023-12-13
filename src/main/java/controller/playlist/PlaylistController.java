@@ -62,6 +62,11 @@ public class PlaylistController extends HttpServlet {
         	System.out.print("userid=" + userId + "playlistid=" + playlistId);
         	PlaylistBO.ChangeName(userId, playlistId, newName);
         }
+        else if(("add-music").equals(actionType)) {
+        	Integer playlistId = Integer.parseInt(req.getParameter("playlistId"));
+        	Integer musicId = Integer.parseInt(req.getParameter("musicId"));
+        	PlaylistBO.AddMusicToPlaylist(musicId, playlistId);
+        }
     }    
 }
 

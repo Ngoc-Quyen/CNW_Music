@@ -96,4 +96,26 @@ public class PlaylistDAO {
         }
     }
 
+    public static void AddMusicToPlaylist(int musicId, int playlistId) {
+    	String query = "INSERT INTO playlist_music(music_id, playlist_id) VALUES(?, ?)";
+        
+        try (Connection connection = DBContext.getConnecttion();
+             PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+            
+            ps.setInt(1, musicId);            
+            ps.setInt(2, playlistId);
+
+            int affectedRows = ps.executeUpdate();
+
+            if (affectedRows > 0) {
+                System.out.println("Success Insert");
+            } else {
+                System.out.println("Insertion failed, no rows affected.");
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Failed");
+        }
+    }
 }

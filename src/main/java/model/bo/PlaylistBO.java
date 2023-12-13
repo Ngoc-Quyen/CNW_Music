@@ -17,4 +17,8 @@ public class PlaylistBO {
 	public static void ChangeName(int userId, int playlistId, String newName) {
 		PlaylistDAO.ChangePlaylistName(userId, playlistId, newName);
 	}
+	
+	public static void AddMusicToPlaylist(int musicId, int playlistId) {
+		PlaylistDAO.AddMusicToPlaylist(musicId, playlistId);
+	}
 }

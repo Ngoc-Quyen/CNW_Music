@@ -21,6 +21,7 @@
     <style>
     	.playlist-container{
     		display: flex;
+    		flex-wrap: wrap;
     		gap: 20px;
     	}
     </style>

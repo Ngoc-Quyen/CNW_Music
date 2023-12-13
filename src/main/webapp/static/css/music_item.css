@@ -43,6 +43,10 @@ p{
 	font-weight: 500;
 }
 
+.music-name:hover{
+	text-decoration: underline;
+}
+
 .artist-name{
 	margin: 0;
 	padding: 0;

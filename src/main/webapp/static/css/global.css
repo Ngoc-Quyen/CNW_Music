@@ -10,3 +10,11 @@ input{
 body{
 	margin: 0;
 }
+
+textarea{
+	font-family: 'Montserrat', sans-serif;
+}
+
+button{
+	font-family: 'Montserrat', sans-serif;
+}

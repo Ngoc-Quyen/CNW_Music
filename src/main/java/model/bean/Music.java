@@ -10,7 +10,25 @@ public class Music {
 	String name;
 	String music_file;
 	Date release_date;
+	String playlist_name;
+	String genre_name;
 	
+	public String getGenre_name() {
+		return genre_name;
+	}
+
+	public void setGenre_name(String genre_name) {
+		this.genre_name = genre_name;
+	}
+
+	public String getPlaylist_name() {
+		return playlist_name;
+	}
+
+	public void setPlaylist_name(String playlist_name) {
+		this.playlist_name = playlist_name;
+	}
+
 	public Music(Integer id, Integer account_id, Integer genre_id, String artist_name, String name, String music_file, Date release_date) {
 		this.id = id;
 		this.account_id = account_id;
