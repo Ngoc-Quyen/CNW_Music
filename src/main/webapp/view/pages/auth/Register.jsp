@@ -30,9 +30,9 @@
           <label>Password</label>
           <input type="password" name="password" placeholder="Password"/>
           <label>Enter the password</label>
-          <input type="password" name="enter the password" placeholder="Enter the password" />
+          <input type="password" name="confirm-password" placeholder="Confirm the password" />
           <input type="hidden" name="action" value="register" />
-          <input type="submit" value="Login" class="btn"/>
+          <input type="submit" value="Register" class="btn"/>
         </form>
       </div>
 
@@ -40,16 +40,7 @@
 
         <div class="last">
           <span>Do you already have an account?</span>
-          <a href="Login.html" id="linkToLogin">Login here</a>
-        </div>
-
-        <div class="last">
-          <span style="font-size: 10px;">This site is protected by reCAPTCHA and the Google</span>
-          <br>
-          <a href="https://policies.google.com/privacy" class="test" style="font-size: 10px;">Privacy Policy</a>
-          <span style="font-size: 10px;">and</span>
-          <a href="https://policies.google.com/terms" class="test" style="font-size: 10px;">Terms of Service</a>
-          <span style="font-size: 10px;">apply.</span>
+          <a href="Login.jsp" id="linkToLogin">Login here</a>
         </div>
 
     </div>

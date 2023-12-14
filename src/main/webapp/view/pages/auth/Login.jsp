@@ -33,7 +33,6 @@
           <input type="password" name="password" placeholder="Password"/>
           <input type="hidden" name="action" value="login" />
           <input type="submit" value="Login" class="btn"/>
-          <input type="reset" value="Reset" class="btn"/>
         </form>
       </div>
 
@@ -41,7 +40,7 @@
 
         <div class="last">
           <span>Don't you have an account?</span>
-          <a href="register.html" id="linkToSignIn">Sign up for Spotify</a>
+          <a href="Register.jsp" id="linkToSignIn">Sign up for Spotify</a>
         </div>
 
         <div class="last">

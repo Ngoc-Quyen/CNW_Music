@@ -105,8 +105,8 @@
 			<img class="playlist-image" src="<%=request.getContextPath()%>/static/img/DefaultPlaylist.jpg">
 			<div class="playlist-information">
 				<p style="font-size: 10px; font-weight: 400;">Playlist</p>
-				<p style="font-size: 40px; font-weight: 600;"  class="playlist-information-name"></p>
-				<p style="font-weight: 500;" class="playlist-information-number"></p>			
+				<p style="font-size: 40px; font-weight: 600;"  class="playlist-information-name">Danh sách phát của bạn</p>
+				<p style="font-weight: 500;" class="playlist-information-number">0 bài hát</p>			
 			</div>
 			<div id="editBtn" style="display: flex; gap: 10px; align-items: center; position: absolute; bottom: -10px; right: 0; cursor: pointer">
 				<img style="width: 12px; height: 12px;" src="<%=request.getContextPath()%>/static/icon/write.svg">

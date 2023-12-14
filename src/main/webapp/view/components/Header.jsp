@@ -66,7 +66,7 @@
 			<div class="header-option-item" onclick="redirectToUserProfile()">
 				<p>Hồ sơ</p>			
 			</div>
-			<div class="header-option-item">
+			<div class="header-option-item" onclick="logout()">
 				<p>Đăng xuất</p>
 			</div>
 		</div>
@@ -86,6 +86,40 @@
 	function redirectToUserProfile(){
         window.location.href = '<%=request.getContextPath()%>/view/pages/user/UserProfile.jsp';
 	}
+	 function logout() {
+	        // Make an AJAX request to the AuthController to perform logout
+	        $.ajax({
+	            type: "POST", // Assuming your AuthController handles logout in doPost
+	            url: '<%=request.getContextPath()%>/AuthController?action=logout',
+	            success: function() {
+	                // Redirect to the login page after successful logout
+	                window.location.href = '<%=request.getContextPath()%>/view/pages/auth/Login.jsp';
+	            },
+	            error: function(xhr, status, error) {
+	                console.error("Error during logout:", error);
+	            }
+	        });
+	    }
+    $(document).ready(function() {
+    	$.ajax({
+            type: "GET",
+            url: '<%=request.getContextPath()%>/AuthController?action=checkUserExist',
+            success: function(data) {
+                // The data variable contains the response from the server
+                if (data === "true") {
+                    // User is logged in, you can handle it accordingly
+                    console.log("User is logged in");
+                } else {
+                    // User is not logged in, handle it accordingly
+                    console.log("User is not logged in");
+                    window.location.href='<%=request.getContextPath()%>/view/pages/auth/Login.jsp';
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("Error checking user login:", error);
+            }
+        });
+    })
 	</script>
 	
 </body>
