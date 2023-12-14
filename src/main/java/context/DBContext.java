@@ -15,7 +15,7 @@ public class DBContext {
     public static Connection getConnecttion() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/java";
+            String url = "jdbc:mysql://localhost:3306/music";
             String user = "root";
             String pass = "";
             return DriverManager.getConnection(url, user, pass);

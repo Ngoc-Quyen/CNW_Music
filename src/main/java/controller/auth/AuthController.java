@@ -32,6 +32,7 @@ public class AuthController extends HttpServlet {
                 // Redirect to index.jsp after successful login
                 HttpSession session = req.getSession();
                 session.setAttribute("userId", acc.getId());
+                session.setAttribute("roleId", acc.getRole_id());
                 resp.sendRedirect("./view/pages/playlist/PlaylistList.jsp");
             }
             else {
@@ -81,7 +82,7 @@ public class AuthController extends HttpServlet {
         if ("checkUserExist".equals(action)) {
             HttpSession session = req.getSession();
             Integer userId = (Integer) session.getAttribute("userId");
-            
+        
             if (userId != null) {
                 // User is logged in, return true
                 resp.getWriter().write("true");
@@ -92,6 +93,17 @@ public class AuthController extends HttpServlet {
                 System.out.print("dont have");
 
             }
+        }
+        else if(("checkAdmin").equals(action)) {
+        	HttpSession session = req.getSession();
+        	Integer roleId = (Integer) session.getAttribute("roleId");
+        	if(roleId == 1) {
+        		resp.getWriter().write("true");
+        		System.out.println("admin");
+        	} else {
+        		resp.getWriter().write("false");
+        		System.out.println("don't admin");
+        	}
         }
     }
 

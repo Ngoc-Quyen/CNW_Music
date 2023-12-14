@@ -15,6 +15,11 @@ public class Genre {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public Genre(Integer id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
 	
 	
 }

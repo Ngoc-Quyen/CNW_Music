@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import context.DBContext;
 import model.bean.Comments;
+import model.bean.Genre;
 import model.bean.Music;
 import model.bean.Playlist;
 
@@ -319,4 +320,59 @@ public class MusicDAO {
 	            System.out.println("Failed");
 	        }
 	}
+	public static boolean AddMusic(Music music) {
+	    String query = "INSERT INTO musics (account_id, genre_id, artist_name, name, musicFile, releaseDate) VALUES (?, ?, ?, ?, ?, ?)";
+	    try (Connection connection = DBContext.getConnecttion();
+	         PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+
+	        ps.setInt(1, music.getAccount_id());
+	        ps.setInt(2, music.getGenre_id());
+	        ps.setString(3, music.getArtist_name());
+	        ps.setString(4, music.getName());
+	        ps.setString(5, music.getMusic_file());
+	        ps.setDate(6, new java.sql.Date(music.getRelease_date().getTime()));
+
+	        int affectedRows = ps.executeUpdate();
+	        if (affectedRows > 0) {
+	            try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+	                if (generatedKeys.next()) {
+	                    // Lấy ID mới được sinh ra (nếu cần)
+	                    int newMusicId = generatedKeys.getInt(1);
+	                    // Thực hiện các hành động khác nếu cần
+	                    System.out.println("Music added successfully. New music ID: " + newMusicId);
+	                }
+	            }
+	            return true;
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        System.out.println("Failed to add music");
+	    }
+	    return false;
+	}
+
+	public static ArrayList<Genre> getAllGenre() {
+		
+		ArrayList<Genre> genrelist = new ArrayList<Genre>();		
+		String query = "SELECT * FROM genres";
+	    try (PreparedStatement ps = DBContext.getConnecttion().prepareStatement(query)) {
+	        ResultSet rs = ps.executeQuery();
+
+	        if (rs.next()) {
+	            // Retrieve values from the ResultSet
+	            int id = rs.getInt("id");
+	            String name = rs.getString("name");
+
+	            Genre genre = new Genre(id, name);
+	           genrelist.add(genre);
+	        }
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        System.out.println("Failed");
+	    }
+	    return genrelist; // Return null if no matching music item is found
+	}
+	
 }

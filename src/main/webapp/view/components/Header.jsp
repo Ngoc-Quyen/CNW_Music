@@ -55,10 +55,16 @@
 	#drop-down-btn{
 		cursor: pointer;
 	}
+	.manage-btn {
+		color: white;
+		font-weight: 600;
+		margin-right: 10px;
+	}
 </style>
 </head>
 <body>
 	<div class="header">
+		<img src="<%= request.getContextPath() %>/static/icon/edit.svg" class="manage-btn" onclick="redirectToAdminPage()">
 		<img class="user-image" src="<%= request.getContextPath() %>/static/img/UserProfile.png" >
 		<p class="user-name">Will</p>
 		<img id="drop-down-btn" class="drop-down" src="<%= request.getContextPath() %>/static/icon/dropdown.svg" >
@@ -85,6 +91,9 @@
 	});
 	function redirectToUserProfile(){
         window.location.href = '<%=request.getContextPath()%>/view/pages/user/UserProfile.jsp';
+	}
+	function redirectToAdminPage(){
+        window.location.href = '<%=request.getContextPath()%>/view/pages/admin/Admin.jsp';
 	}
 	 function logout() {
 	        // Make an AJAX request to the AuthController to perform logout
@@ -113,6 +122,28 @@
                     // User is not logged in, handle it accordingly
                     console.log("User is not logged in");
                     window.location.href='<%=request.getContextPath()%>/view/pages/auth/Login.jsp';
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("Error checking user login:", error);
+            }
+        });
+    })
+    $(document).ready(function() {
+    	$.ajax({
+            type: "GET",
+            url: '<%=request.getContextPath()%>/AuthController?action=checkAdmin',
+            success: function(data) {
+                // The data variable contains the response from the server
+                if (data === "true") {
+                    // User is logged in, you can handle it accordingly
+                    console.log("User is admin");
+                    $(".manage-btn").show();
+                } else {
+                    // User is not logged in, handle it accordingly
+                    console.log("User is not admin");
+                    $(".manage-btn").hide();
+
                 }
             },
             error: function(xhr, status, error) {

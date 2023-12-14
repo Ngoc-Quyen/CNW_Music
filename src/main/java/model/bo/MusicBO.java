@@ -3,6 +3,7 @@ package model.bo;
 import java.util.ArrayList;
 
 import model.bean.Comments;
+import model.bean.Genre;
 import model.bean.Music;
 import model.dao.MusicDAO;
 
@@ -51,5 +52,11 @@ public class MusicBO {
 	
 	public static void DeleteMusic(int musicId) {
 		MusicDAO.DeleteMusic(musicId);
+	}
+	public static boolean AddMusic(Music music) {
+		return MusicDAO.AddMusic(music);
+	}
+	public static ArrayList<Genre> getAllGenre() {
+		return MusicDAO.getAllGenre();
 	}
 }
